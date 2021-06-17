@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\SoloAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +25,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'inicio'])->name('inicio');
+
+Route::get('/actividades', [HomeController::class, 'getUser']);
 
 /*Auth::routes();
 

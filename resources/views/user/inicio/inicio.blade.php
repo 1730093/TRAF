@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appuser')
 @section('content')
     <div class="container" style="margin-top: 20px;">
 
@@ -22,8 +22,7 @@
         </div>
     </div> --}}
 
-    <h2>Actividades de administrador</h2>
-
+    <h2>Actividades de usuario</h2>
         <!-- Dentro de FOR -->
         <div class="row">
             <div class="col-lg-4">

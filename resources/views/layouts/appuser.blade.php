@@ -50,14 +50,14 @@
                         @endif
                     @else
                         <div class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a href="{{ route('inicio') }}">{{ __('Inicio') }}</a>
+                            {{-- <li class="nav-item">
+                                <a href="{{ route('inicio') }}">{{ __('Inicio') }}</a> 
                             </li>
                             <li class="nav-item">
                                 <a href="">{{ __('Asistencias') }}</a>
-                            </li>
-                            <a href="">{{ __('Situaciones ') }}</a>
-                            <a href="">{{ __('Usuarios') }}</a>
+                            </li>--}}
+                            <a href="">{{ __('Actividades ') }}</a>
+                            <a href="">{{ __('Situaciones') }}</a>
 
 
                         </div>

@@ -18,15 +18,17 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         
         DB::table('generos')->insert([
-            'genero' => 'Hombre',
+            'genero' => 'Masculino',
         ]);
 
         DB::table('generos')->insert([
-            'genero' => 'Mujer',
+            'genero' => 'Femenino',
         ]);
         DB::table('roles')->insert([
-            'rol' => 'Administrador',
-            
+            'rol' => 'administrador',
+        ]);
+        DB::table('roles')->insert([
+            'rol' => 'empleado',
         ]);
 
 
@@ -39,6 +41,16 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'id_genero' => '1',
             'id_rol' => '1',
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Juan',
+            'apellido_pat' => 'meza',
+            'apellido_mat' => 'meza',
+            'fecha_nac' => '29/04/1999',
+            'email' => 'usuario@gmail.com',
+            'password' => Hash::make('123456789'),
+            'id_genero' => '1',
+            'id_rol' => '2',
         ]);
     }
 }
