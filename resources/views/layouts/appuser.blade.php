@@ -28,7 +28,7 @@
                 {{--<!--<a class="navbar-brand" href="{{ url('/') }}">
                    {{-- {{ config('app.name', 'TRAF') }} 
                 </a>-->--}}
-                <a class="navbar-brand o" href="{{ url('/') }}"><img src={{ asset('imagenes/logo.png') }}
+                <a class="navbar-brand o" href="{{-- url('/') --}}"><img src={{ asset('imagenes/logo.png') }}
                         width="64"></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"

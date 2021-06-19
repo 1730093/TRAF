@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SoloAdmin
+class SoloEmpleado
 {
     /**
      * Handle an incoming request.
@@ -19,10 +19,10 @@ class SoloAdmin
     {
         switch($request->user()->id_rol){
             case ('1'):
-                return $next($request);
+                return redirect('/inicio');
                 break;
             case ('2'):
-                return redirect('/actividades');
+                return $next($request);
                 break;
         }
     }

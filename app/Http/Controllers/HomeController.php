@@ -14,7 +14,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('soloadmin',['only' => 'index']);
+        $this->middleware('soloadmin',['only' => 'inicio']);
+        $this->middleware('soloempleado',['only' => 'getuser']);
+
         //$this->middleware('soloadmin');
 
     }
@@ -27,6 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+        //return view('admin.inicio.inicio');
     }
 
     public function inicio()
@@ -34,7 +37,7 @@ class HomeController extends Controller
         return view('admin.inicio.inicio');
     }
 
-    public function getUser(){
+    public function getuser(){
         return view('user.inicio.inicio');
     }
 }
