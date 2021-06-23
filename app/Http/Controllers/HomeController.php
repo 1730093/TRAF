@@ -14,10 +14,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('soloadmin',['only' => 'inicio']);
-        $this->middleware('soloempleado',['only' => 'getuser']);
-
-        //$this->middleware('soloadmin');
+        $this->middleware('soloadmin',['only' => 'inicio']);//AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL ADMIN
+        $this->middleware('soloempleado',['only' => 'getuser']);//AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL EMPLEADO
 
     }
 
@@ -31,13 +29,19 @@ class HomeController extends Controller
         return view('home');
         //return view('admin.inicio.inicio');
     }
-
+    //ADMINISTRADORES
     public function inicio()
     {
         return view('admin.inicio.inicio');
     }
 
+  
+
+    //EMPLEADOS
+
     public function getuser(){
         return view('user.inicio.inicio');
     }
+
+   
 }

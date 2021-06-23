@@ -22,7 +22,7 @@ class SoloAdmin
                 return $next($request);
                 break;
             case ('2'):
-                return redirect('/actividades');
+                return redirect('actividades');
                 break;
         }
     }

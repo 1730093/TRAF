@@ -23,12 +23,12 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md" style="background-color:#490B96;">
+        <nav class="navbar navbar-expand-md" style="background-color:#490B96;"><!--7b42c3, 490B96 -->
             <div class="container">
                 {{--<!--<a class="navbar-brand" href="{{ url('/') }}">
                    {{-- {{ config('app.name', 'TRAF') }} 
                 </a>-->--}}
-                <a class="navbar-brand o" href="{{-- url('/') --}}"><img src={{ asset('imagenes/logo.png') }}
+                <a class="navbar-brand o" href="{{-- url('inicio') --}}"><img src={{ asset('imagenes/logo.png') }}
                         width="64"></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -51,13 +51,13 @@
                     @else
                         <div class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a href="{{-- route('inicio') --}}">{{ __('Inicio') }}</a>
+                                <a href="{{ route('inicio') }}">{{ __('Inicio') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="">{{ __('Asistencias') }}</a>
+                                <a href="{{ route('asistencias') }}">{{ __('Asistencias') }}</a>
                             </li>
-                            <a href="">{{ __('Situaciones ') }}</a>
-                            <a href="">{{ __('Usuarios') }}</a>
+                            <a href="{{ route('situaciones') }}">{{ __('Situaciones ') }}</a>
+                            <a href="{{ route('usuarios') }}">{{ __('Usuarios') }}</a>
 
 
                         </div>

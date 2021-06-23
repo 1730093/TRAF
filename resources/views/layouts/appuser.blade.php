@@ -56,9 +56,9 @@
                             <li class="nav-item">
                                 <a href="">{{ __('Asistencias') }}</a>
                             </li>--}}
-                            <a href="">{{ __('Actividades ') }}</a>
-                            <a href="">{{ __('Situaciones') }}</a>
-
+                            <a href="{{'actividades'}}">{{ __('Mis actividades ') }}</a>
+                            <a href="{{'situacion'}}">{{ __('Mis situaciones') }}</a>
+                            <a href="{{'asistencia'}}">{{ __('Mis asistencias') }}</a>
 
                         </div>
 

@@ -19,7 +19,7 @@ class SoloEmpleado
     {
         switch($request->user()->id_rol){
             case ('1'):
-                return redirect('/inicio');
+                return redirect('inicio');
                 break;
             case ('2'):
                 return $next($request);
