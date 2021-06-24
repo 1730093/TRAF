@@ -49,18 +49,30 @@
 
                         @endif
                     @else
-                        <div class="navbar-nav ml-auto">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a href="{{'actividades'}}" class="nav-link i"
+                            style="color:white">{{ __('Mis actividades ') }}</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{'situacion'}}" class="nav-link i"
+                            style="color:white" >{{ __('Mis situaciones') }}</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{'asistencia'}}" class="nav-link i"
+                            style="color:white" >{{ __('Mis asistencias') }}</a>
+                        </li>
+                    </ul>
+                        {{-- <div class="navbar-nav ml-auto">
                             {{-- <li class="nav-item">
                                 <a href="{{ route('inicio') }}">{{ __('Inicio') }}</a> 
                             </li>
                             <li class="nav-item">
                                 <a href="">{{ __('Asistencias') }}</a>
-                            </li>--}}
+                            </li>
                             <a href="{{'actividades'}}">{{ __('Mis actividades ') }}</a>
-                            <a href="{{'situacion'}}">{{ __('Mis situaciones') }}</a>
-                            <a href="{{'asistencia'}}">{{ __('Mis asistencias') }}</a>
 
-                        </div>
+                        </div> --}}
 
 
                     @endguest

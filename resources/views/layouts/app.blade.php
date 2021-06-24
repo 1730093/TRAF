@@ -23,11 +23,12 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md" style="background-color:#490B96;"><!--7b42c3, 490B96 -->
+        <nav class="navbar navbar-expand-md" style="background-color:#490B96;">
+            <!--7b42c3, 490B96 -->
             <div class="container">
-                {{--<!--<a class="navbar-brand" href="{{ url('/') }}">
+                {{-- <!--<a class="navbar-brand" href="{{ url('/') }}">
                    {{-- {{ config('app.name', 'TRAF') }} 
-                </a>-->--}}
+                </a>--> --}}
                 <a class="navbar-brand o" href="{{-- url('inicio') --}}"><img src={{ asset('imagenes/logo.png') }}
                         width="64"></a>
 
@@ -49,18 +50,31 @@
 
                         @endif
                     @else
-                        <div class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a href="{{ route('inicio') }}">{{ __('Inicio') }}</a>
+                        @if(Auth::user()->id_rol == 1)
+                        {{-- <div class="navbar-nav ml-auto"> --}}
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a href="{{ route('inicio') }}" class="nav-link i"
+                                    style="color:white">{{ __('Inicio') }} </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('asistencias') }}">{{ __('Asistencias') }}</a>
+                            <li class="nav-item active">
+                                <a href="{{ route('asistencias') }}" class="nav-link i"
+                                    style="color:white">{{ __('Asistencias') }}</a>
                             </li>
-                            <a href="{{ route('situaciones') }}">{{ __('Situaciones ') }}</a>
-                            <a href="{{ route('usuarios') }}">{{ __('Usuarios') }}</a>
-
-
-                        </div>
+                            <li class="nav-item active">
+                                <a href="{{ route('situaciones') }}" class="nav-link i"
+                                    style="color:white">{{ __('Situaciones ') }}</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{{ route('usuarios') }}" class="nav-link i"
+                                    style="color:white">{{ __('Usuarios') }}</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{{ route('rol.index') }}" class="nav-link i"
+                                    style="color:white">{{ __('Roles') }}</a>
+                            </li>
+                        </ul>
+                        @endif 
 
 
                     @endguest
@@ -93,7 +107,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
 

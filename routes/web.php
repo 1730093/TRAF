@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SituacionController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -41,5 +42,8 @@ Route::get('/inicio', [HomeController::class, 'inicio'])->name('inicio');
 Route::get('/situaciones', [SituacionController::class, 'situaciones'])->name('situaciones');
 Route::get('/asistencias', [AsistenciaController::class, 'asistencias'])->name('asistencias');
 Route::get('/usuarios', [UserController::class, 'usuarios'])->name('usuarios');
+
+//Route::get('/roles', [RolController::class, 'roles'])->name('roles');
+Route::resource('/rol','App\Http\Controllers\RolController')->names('rol');
 
 
