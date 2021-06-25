@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Rol;
 
 class User extends Authenticatable
 {
@@ -18,8 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'apellido_pat',
+        'apellido_mat',
+        'fecha_nac',
         'email',
         'password',
+        'id_genero',
+        'id_rol',
     ];
 
     /**
@@ -40,4 +46,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rol(){
+    	return $this->belongsTo('App\Models\Rol');
+    }
 }

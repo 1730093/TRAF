@@ -45,9 +45,9 @@
 
                         @endif
 
-                        @if (Route::has('register'))
-
-                        @endif
+                        {{-- @if (Route::has('register')) --}}
+{{-- 
+                        @endif --}}
                     @else
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -55,7 +55,7 @@
                             style="color:white">{{ __('Mis actividades ') }}</a>
                         </li>
                         <li class="nav-item active">
-                            <a href="{{'situacion'}}" class="nav-link i"
+                            <a href="{{ route ('situaciones.index') }}" class="nav-link i"
                             style="color:white" >{{ __('Mis situaciones') }}</a>
                         </li>
                         <li class="nav-item active">

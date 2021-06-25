@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Situacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SituacionController extends Controller
 {
@@ -11,8 +12,8 @@ class SituacionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('soloadmin',['only' => 'situaciones']);//AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL ADMIN
-        $this->middleware('soloempleado',['only' => 'situacion']);//AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL EMPLEADO
+        //$this->middleware('soloadmin',['only' => 'index']);//AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL ADMIN
+        $this->middleware('soloempleado',['only' => 'store','update','destroy']);//AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL EMPLEADO
 
     }
     /**
@@ -22,17 +23,40 @@ class SituacionController extends Controller
      */
     public function index()
     {
-        //
+        //     
+        //return view('admin.situaciones.index');
+        // if(Auth::user()->id_rol == 1){
+        //     return view('admin.situaciones.index');
+        // }else{
+        //     $id_usuario = Auth::user()->id;
+        //     $situaciones = Situacion::where('id_user','=',$id_usuario)->paginate();
+        //     //return $situaciones;
+        //     return view('user.situaciones.index',compact('situaciones'));
+        // }
+
+        switch(Auth::user()->id_rol){
+            case ('1'):
+                $situaciones = Situacion::get();
+    
+                return view('admin.situaciones.index',compact('situaciones'));
+                break;
+            default:
+                $id_usuario = Auth::user()->id;
+                $situaciones = Situacion::where('id_user','=',$id_usuario)->paginate();
+                //return $situaciones;
+                return view('user.situaciones.index',compact('situaciones'));
+                break;
+        }
     }
 
-    public function situaciones()
-    {
-        return view('admin.situaciones.index');
-    }
+    // public function situaciones()
+    // {
+    // }
 
     public function situacion()
     {
-        return view('user.situaciones.index');
+
+       
     }
     /**
      * Show the form for creating a new resource.
@@ -55,6 +79,20 @@ class SituacionController extends Controller
     public function store(Request $request)
     {
         //
+        $id = Auth::user()->id;
+        $date = date('Y-m-d');
+        //return $date;
+        
+
+        $situacion = new Situacion();
+        $situacion->titulo = $request->titulosituacion;
+        $situacion->descripcion = $request->descripcionsituacion;
+        $situacion->fecha_peticion= $date;
+        $situacion->estado = 'pendiente';
+        $situacion->id_user = $id;
+        $situacion->save();
+        return redirect()->route('situaciones.index')->with('resultado', 'Se realizó correctamente el registro de la situacion.');
+
     }
 
     /**
@@ -83,12 +121,25 @@ class SituacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Situacion  $situacion
+     * @param  \App\Models\Situacion  $situacione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Situacion $situacion)
+    public function update(Request $request, $id)
     {
         //
+        //return $request;
+        
+        $request->validate([
+            'titulosituacion' => 'required',
+            'descripcionsituacion' => 'required'
+        ]);
+        $situacion = Situacion::findOrFail($id);
+        $situacion->titulo = $request->titulosituacion;
+        $situacion->descripcion = $request->descripcionsituacion;
+
+
+        $situacion->save();
+        return redirect()->route('situaciones.index')->with('resultado', 'Se actualizo correctamente la situacion.');
     }
 
     /**
@@ -97,8 +148,13 @@ class SituacionController extends Controller
      * @param  \App\Models\Situacion  $situacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Situacion $situacion)
+    public function destroy($id)
     {
         //
+        
+        //
+        Situacion::destroy($id);
+        return redirect()->route('situaciones.index')->with('resultado', 'La situacion se elimino correctamente.');
+        
     }
 }

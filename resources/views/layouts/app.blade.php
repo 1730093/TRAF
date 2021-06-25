@@ -62,11 +62,11 @@
                                     style="color:white">{{ __('Asistencias') }}</a>
                             </li>
                             <li class="nav-item active">
-                                <a href="{{ route('situaciones') }}" class="nav-link i"
+                                <a href="{{ route ('situaciones.index')  }}" class="nav-link i"
                                     style="color:white">{{ __('Situaciones ') }}</a>
                             </li>
                             <li class="nav-item active">
-                                <a href="{{ route('usuarios') }}" class="nav-link i"
+                                <a href="{{ route('usuarios.index') }}" class="nav-link i"
                                     style="color:white">{{ __('Usuarios') }}</a>
                             </li>
                             <li class="nav-item active">
@@ -88,11 +88,11 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
                                 </li>
                             @endif
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

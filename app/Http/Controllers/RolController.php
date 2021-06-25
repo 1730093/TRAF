@@ -21,10 +21,9 @@ class RolController extends Controller
      */
     public function index(Request $request)
     {
-       // $rol = Rol::get();
-       $rolcito=$request->get('rol_buscado');
-
-        $rol= Rol::where('rol','like',"%$rolcito%")->orderBy('rol')->paginate();
+        // $rol = Rol::get();
+        $rolcito = $request->get('rol_buscado');
+        $rol = Rol::where('rol', 'like', "%$rolcito%")->orderBy('rol')->paginate();
 
 
         //return view('admin.roles.index');
@@ -105,7 +104,7 @@ class RolController extends Controller
         $request->validate([
             'editarrol' => 'required',
         ]);
-        $rol= Rol::findOrFail($id);
+        $rol = Rol::findOrFail($id);
         $rol->rol = $request->editarrol;
 
         $rol->save();
@@ -123,6 +122,5 @@ class RolController extends Controller
         //
         Rol::destroy($id);
         return redirect()->route('rol.index')->with('resultado', 'El rol se elimino correctamente.');
-
     }
 }

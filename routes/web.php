@@ -33,17 +33,21 @@ Auth::routes();
 
 //RUTAS DE EMPLEADOS
 Route::get('/actividades', [HomeController::class, 'getuser'])->name('actividades');
-Route::get('/situacion', [SituacionController::class, 'situacion'])->name('situacion');
+//Route::get('/situacion/situacion', [SituacionController::class, 'situacion'])->name('situacion.situacion');
 Route::get('/asistencia', [AsistenciaController::class, 'asistencia'])->name('asistencia');
 
 
 //RUTAS DE ADMINISTRADOR
 Route::get('/inicio', [HomeController::class, 'inicio'])->name('inicio');
-Route::get('/situaciones', [SituacionController::class, 'situaciones'])->name('situaciones');
+// Route::get('/situaciones', [SituacionController::class, 'situaciones'])->name('situaciones');
 Route::get('/asistencias', [AsistenciaController::class, 'asistencias'])->name('asistencias');
-Route::get('/usuarios', [UserController::class, 'usuarios'])->name('usuarios');
+//Route::get('/usuarios', [UserController::class, 'usuarios'])->name('usuarios');
+Route::resource('/usuarios','App\Http\Controllers\UserController')->names('usuarios');
 
 //Route::get('/roles', [RolController::class, 'roles'])->name('roles');
 Route::resource('/rol','App\Http\Controllers\RolController')->names('rol');
+
+Route::resource('/situaciones','App\Http\Controllers\SituacionController')->names('situaciones');
+
 
 

@@ -21,7 +21,7 @@ class SoloEmpleado
             case ('1'):
                 return redirect('inicio');
                 break;
-            case ('2'):
+            default:
                 return $next($request);
                 break;
         }

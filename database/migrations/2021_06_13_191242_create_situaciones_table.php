@@ -20,7 +20,9 @@ class CreateSituacionesTable extends Migration
             $table->date('fecha_peticion');
             $table->date('fecha_falta');
             $table->char('estado');
-
+            $table->integer('aprobado_por');
+            $table->unsignedBigInteger('id_user')->unsigned();            
+            $table->foreign('id_user')->references('id')->on('user');
             $table->timestamps();
         });
     }

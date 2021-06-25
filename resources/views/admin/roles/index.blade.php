@@ -9,14 +9,13 @@
 
     @endif
 
-    <h1>Roles de administrador</h1>
     <!-- Dentro de FOR -->
     <div class="row">
 
         <div class="col-lg-12 ">
 
             <div class="container">
-                <h2>Roles</h2>
+                <h1>Roles</h1>
                 <br>
                 <div class="row">
                     <div class="col-lg-7">

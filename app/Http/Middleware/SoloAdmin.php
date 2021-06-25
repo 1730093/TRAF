@@ -21,7 +21,7 @@ class SoloAdmin
             case ('1'):
                 return $next($request);
                 break;
-            case ('2'):
+            default:
                 return redirect('actividades');
                 break;
         }
