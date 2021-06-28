@@ -5,8 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Actividad;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 class ActividadController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        //$this->middleware('soloadmin', ['only' => 'inicio']); //AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL ADMIN
+        //$this->middleware('soloempleado', ['only' => 'getuser']); //AQUI SE DECLARAN LAS RUTAS QUE UTILIZA EL EMPLEADO
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +26,19 @@ class ActividadController extends Controller
     public function index()
     {
         //
+        switch (Auth::user()->id_rol) {
+            case ('1'):
+                
+                return view('admin.inicio.inicio');
+            default:
+            $actividades = Actividad::get();
+            //$users = User::get();
+
+                return view('user.inicio.inicio', compact('actividades'));
+
+                //return view('home');
+                //return view('admin.inicio.inicio');
+        }
     }
 
     
@@ -34,11 +58,30 @@ class ActividadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   
+    public function update(Request $request, $id)
     {
-        //
-    }
+        // $request->validate([
+        //     'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        $urlimagenes = [];
+        if($request->hasFile('imagenes')){
+            $imagenes = $request->file('imagenes');
+            foreach($imagenes as $imagen){
+                $nombre = time().'_'.$imagen->getClientOriginalName();
+                $ruta = public_path().'/imagenes';
+                $imagen->move($ruta,$nombre);
+                $urlimagenes[]['url'] = '/imagenes/'.$nombre;
+            }
+        }
+        $actividad = Actividad::findOrFail($id);
+        $actividad->estado= 'Concluido';   
+        $actividad->save();    
+        $actividad->images()->createMany($urlimagenes);
+        
+        return redirect()->route('actividades.index')->with('datos','Registro creado correctamente.');
 
+    }
     /**
      * Display the specified resource.
      *
@@ -68,7 +111,7 @@ class ActividadController extends Controller
      * @param  \App\Models\Actividad  $actividad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Actividad $actividad)
+    public function store(Request $request, Actividad $actividad)
     {
         //
     }

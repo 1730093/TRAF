@@ -28,7 +28,6 @@ class UserController extends Controller
         //
         $roles = Rol::get();
         $generos = Genero::get();
-        //$usuarios = User::get();
 
         $userb = $request->get('nombre');
         $usuarios = User::where('name', 'like', "%$userb%")->orderBy('name')->paginate();

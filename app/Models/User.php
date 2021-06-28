@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Rol;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -45,9 +46,32 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        //  'fecha_nac' => '%y years, %m months and %d days',
+
     ];
 
     public function rol(){
-    	return $this->belongsTo('App\Models\Rol');
+    	//return $this->belongsTo('App\Models\Rol');
+        return $this->belongsTo(Rol::class, 'id_rol');
+
     }
+    public function genero(){
+    	//return $this->belongsTo('App\Models\Rol');
+        return $this->belongsTo(Genero::class, 'id_genero');
+
+    }
+
+    public function age()
+    {
+        return Carbon::parse($this->attributes['fecha_nac'])->age;
+    }
+
+    public function image(){
+        return $this->morphOne('App\Models\Image','imageable');
+    }
+
+    // public function edag(Date $edad){
+    //     $edad::parse(User)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days');
+
+    // }
 }

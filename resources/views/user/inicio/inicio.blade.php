@@ -1,183 +1,80 @@
 @extends('layouts.appuser')
+
 @section('content')
-    <div class="container" style="margin-top: 20px;">
 
-        {{-- <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are in Inicio!') }}
-                    </div>
-                </div>
-            </div>
+    @if (session('datos'))
+        <div class="alert alert-success" role="alert">
+            {{ session('datos') }}
         </div>
-    </div> --}}
+    @else
 
-    <h2>Actividades de usuario</h2>
-        <!-- Dentro de FOR -->
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card text-white  mb-3" style=" width: 100%; height: 200; background-color: #6261B1;">
-                    <div class="card-header">Buscar</div>
-                    <div class="card-body">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+    @endif
+    <!-- Dentro de FOR -->
+    <div class="row">
+
+        <div class="col-lg-12 ">
+
+            <div class="container">
+                <h1>Actividades</h1>
+                <br>
+                <div class="row">
+
+                    <div class="col-lg-7">
+                        {{--
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#AgregarUsuario">Nuevo
+                            actividad</button> --}}
+                    </div>
+
+                    <div class="col-lg-5">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" name="nombre" type="search" placeholder="Buscar."
+                                aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                         </form>
-                        <!--<h5 class="card-title">Dark card title</h5>
-                    <p class="card-text"> content.</p>-->
-                    </div>
-                    <div class="card-header">Filtros</div>
-                    <div class="card-body">
 
-                        <h7>Filtro 1</h7><input type="checkbox" class="checkbox" name="">
-                        <br>
-                        <h7>Filtro 2</h7><input type="checkbox" class="checkbox" name="">
-                        <br>
-                        <h7>Filtro 3</h7><input type="checkbox" class="checkbox" name="">
                     </div>
+
                 </div>
-                <!--
-                <div class="card text-white mb-3" style=" width: 100%; height: 200; background-color: #3E755A;" >
-                  <div class="card-header">Opiniones de clientes</div>
-                  <div class="card-body">
-                      <h7></h7>
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text"> content.</p>
-                  </div>
-                </div> -->
+                <div class="row">
+
+                </div>
+                <br>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Fecha inicio</th>
+                            <th scope="col">Fecha fin</th>
+                            <th scope="col">Evidencia</th>
+                            {{-- <th scope="col" colspan="3">Acciones</th> --}}
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        @foreach ($actividades as $actividad)
+                            <tr>
+                                <td>{{ $actividad->titulo }}</td>
+                                <td>{{ $actividad->descripcion }}</td>
+                                <td>{{ $actividad->fecha_inicio }}</td>
+                                <td>{{ $actividad->fecha_fin }}</td>
+                                
+                                {{-- <td>{{ $actividad->estado }}</td> --}}
+                                
+                                <td><button class="btn btn-primary"  data-toggle="modal"
+                                    data-target="#enviarEvidencia"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                  </svg></button></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            <div class="col-lg-8 ">
-                <!-- dentro del for -->
-                <div class="card  mb-3" style=" width: 100%; height: 200; background-color: #E7DDD5;">
-                    <div class="card-header">
-                        <h3>Titulo de la actividad</h3>
-                    </div>
-                    <div class=" card-body">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                Descripción breve o larga. <br>
-                                Fecha.
-                            </div>
-                            <div class="col-lg-5">
-                                <button class="btn btn-success">Finalizar</button>
-                                <button class="btn btn-warning">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        Evidencia.
-                    </div>
-                </div>
-
-                <!-- dentro del for -->
-                <div class="card  mb-3" style=" width: 100%; height: 200; background-color: #E7DDD5;">
-                    <div class="card-header">
-                        <h3>Titulo de la actividad</h3>
-                    </div>
-                    <div class=" card-body">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                Descripción breve o larga. <br>
-                                Fecha.
-                            </div>
-                            <div class="col-lg-5">
-                                <button class="btn btn-success">Finalizar</button>
-                                <button class="btn btn-warning">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        Evidencia.
-                    </div>
-                </div>
-                <!-- dentro del for -->
-                <div class="card  mb-3" style=" width: 100%; height: 200; background-color: #E7DDD5;">
-                    <div class="card-header">
-                        <h3>Titulo de la actividad</h3>
-                    </div>
-                    <div class=" card-body">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                Descripción breve o larga. <br>
-                                Fecha.
-                            </div>
-                            <div class="col-lg-5">
-                                <button class="btn btn-success">Finalizar</button>
-                                <button class="btn btn-warning">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        Evidencia.
-                    </div>
-                </div>
-                <!-- dentro del for -->
-                <div class="card  mb-3" style=" width: 100%; height: 200; background-color: #E7DDD5;">
-                    <div class="card-header">
-                        <h3>Titulo de la actividad</h3>
-                    </div>
-                    <div class=" card-body">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                Descripción breve o larga. <br>
-                                Fecha.
-                            </div>
-                            <div class="col-lg-5">
-                                <button class="btn btn-success">Finalizar</button>
-                                <button class="btn btn-warning">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        Evidencia.
-                    </div>
-                </div>
-                <!-- dentro del for -->
-                <div class="card  mb-3" style=" width: 100%; height: 200; background-color: #E7DDD5;">
-                    <div class="card-header">
-                        <h3>Titulo de la actividad</h3>
-                    </div>
-                    <div class=" card-body">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                Descripción breve o larga. <br>
-                                Fecha.
-                            </div>
-                            <div class="col-lg-5">
-                                <button class="btn btn-success">Finalizar</button>
-                                <button class="btn btn-warning">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        Evidencia.
-                    </div>
-                </div>
-            </div>
-
-
-
         </div>
-        <!-- Dentro de FOR -->
     </div>
+
+    <!-- Fin -->
+    @include('user.inicio.agregar')
+
 @endsection

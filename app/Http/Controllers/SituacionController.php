@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Situacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class SituacionController extends Controller
 {
@@ -36,9 +37,13 @@ class SituacionController extends Controller
 
         switch(Auth::user()->id_rol){
             case ('1'):
+                //$situaciones = Situacion::get();
                 $situaciones = Situacion::get();
-    
-                return view('admin.situaciones.index',compact('situaciones'));
+                $users = User::get();
+
+                //return view('admin.situaciones.index',compact('situaciones','users'));
+                return view('admin.situaciones.index',compact('situaciones','users'));
+
                 break;
             default:
                 $id_usuario = Auth::user()->id;

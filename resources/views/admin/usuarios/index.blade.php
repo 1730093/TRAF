@@ -23,14 +23,15 @@
                             empleado</button>
                     </div>
 
-					<div class="col-lg-5">
+                    <div class="col-lg-5">
                         <form class="form-inline">
-                            <input class="form-control mr-sm-2" name="nombre" type="search" placeholder="Buscar." aria-label="Search">
+                            <input class="form-control mr-sm-2" name="nombre" type="search" placeholder="Buscar."
+                                aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                          </form>
-                        
+                        </form>
+
                     </div>
-                    
+
                 </div>
                 <div class="row">
 
@@ -43,29 +44,25 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Rol</th>
                             <th scope="col">Genero</th>
-                            <th scope="col">Fecha de nacimiento</th>
+                            <th scope="col">Edad</th>
                             <th scope="col" colspan="3">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="table-light">
                         @foreach ($usuarios as $user)
-							
                             <tr>
-								<td></td>
-								<td>{{$user->name ." ". $user->apellido_pat ." ". $user->apellido_mat }}</td>
-								@foreach($roles as $r)
+                                <td></td>
+                                <td>{{ $user->name . ' ' . $user->apellido_pat . ' ' . $user->apellido_mat }}</td>
+                                <td>{{ $user->rol->rol }}</td>
+                                {{-- @foreach($roles as $r)
 									@if($r->id_rol == $user->id_rol)
 									<td>{{$r->rol}}</td>
 									@endif
-									@endforeach	
+									@endforeach --}}
+                                <td>{{ $user->genero->genero }}</td>
 
-								@foreach($generos as $g)
-									@if($g->id_genero == $user->id_genero)
-									<td>{{$g->genero}}</td>
-									@endif
-								@endforeach	
-
-								<td>{{$user->fecha_nac}}</td>
+                                {{-- <td>{{ $user->fecha_nac }}</td> --}}
+                                <td>{{ $user->age() }}</td>
                                 <td><button class="btn btn-outline-success" data-toggle="modal"
                                         data-target="#masinformacion"><svg xmlns="http://www.w3.org/2000/svg" width="32"
                                             height="32" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -90,11 +87,8 @@
                                         </svg></button></td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
-
-
             </div>
         </div>
     </div>

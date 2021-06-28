@@ -32,13 +32,13 @@ Auth::routes();
 //FIN EJEMPLOS
 
 //RUTAS DE EMPLEADOS
-Route::get('/actividades', [HomeController::class, 'getuser'])->name('actividades');
+//Route::get('/actividades', [HomeController::class, 'index'])->name('actividades');
 //Route::get('/situacion/situacion', [SituacionController::class, 'situacion'])->name('situacion.situacion');
 Route::get('/asistencia', [AsistenciaController::class, 'asistencia'])->name('asistencia');
 
 
 //RUTAS DE ADMINISTRADOR
-Route::get('/inicio', [HomeController::class, 'inicio'])->name('inicio');
+Route::get('/inicio', [HomeController::class, 'index'])->name('inicio');
 // Route::get('/situaciones', [SituacionController::class, 'situaciones'])->name('situaciones');
 Route::get('/asistencias', [AsistenciaController::class, 'asistencias'])->name('asistencias');
 //Route::get('/usuarios', [UserController::class, 'usuarios'])->name('usuarios');
@@ -51,3 +51,4 @@ Route::resource('/situaciones','App\Http\Controllers\SituacionController')->name
 
 
 
+Route::resource('/actividades','App\Http\Controllers\ActividadController')->names('actividades');
